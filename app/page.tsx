@@ -3,8 +3,12 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import { DateRange, RangeKeyDict } from 'react-date-range';
+import { differenceInCalendarDays } from 'date-fns';
+
+// Import the default styles for react-date-range
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
 
 export default function HomePage() {
   return (
@@ -12,6 +16,7 @@ export default function HomePage() {
       <HeroSection />
       <AboutSection />
       <FacilitySection />
+      <TestimonialSection />
       <PricingSection />
       <BookingSection />
       <ContactSection />
@@ -27,14 +32,20 @@ function HeroSection() {
       id="hero"
       className="relative w-full h-screen flex items-center justify-center text-white bg-black overflow-hidden"
     >
-      {/* Background Image */}
-      <Image
-        src="https://images.unsplash.com/photo-1596495577886-d920f5c42eb1"
-        alt="Happy Dogs"
-        fill
-        className="object-cover object-center brightness-50"
-        priority
-      />
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover brightness-50"
+      >
+        <source
+          src="https://videos.pexels.com/video-files/1182756/1182756-hd_1920_1080_25fps.mp4"
+          type="video/mp4"
+        />
+      </video>
+
       {/* Hero Text */}
       <motion.div
         className="relative z-10 text-center px-4"
@@ -46,7 +57,7 @@ function HeroSection() {
           Home Away From Home
         </h1>
         <p className="text-xl md:text-2xl mb-6">
-          Your dog's cozy retreat where every pup is family
+          Your dog&apos;s cozy retreat where every pup is family
         </p>
       </motion.div>
     </section>
@@ -64,7 +75,7 @@ function AboutSection() {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-bold mb-6 text-center">About Manny</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center">About Manny Valdes</h2>
         <div className="flex flex-col md:flex-row items-center md:space-x-6">
           <div className="relative w-full md:w-1/2 h-64 mb-4 md:mb-0">
             <Image
@@ -76,16 +87,20 @@ function AboutSection() {
           </div>
           <div className="md:w-1/2">
             <p className="mb-4">
-              Hi there! I’m Manny, the proud owner and caretaker at Home Away
-              From Home Doggy Daycare. My lifelong passion for animals led me
-              to create a daycare and boarding service where every dog feels
-              truly at home. When your dog stays with me, they join my
-              family—enjoying cozy indoor kennels, a safe outdoor play area,
-              and plenty of one-on-one attention.
+              Hi there! I’m <strong>Manny Valdes</strong>, the proud owner and 
+              caretaker at Home Away From Home Doggy Daycare. My lifelong passion 
+              for animals led me to create a daycare and boarding service where 
+              every dog feels truly at home. When your dog stays with me, they 
+              join my family—enjoying cozy indoor kennels, a safe outdoor play 
+              area, and plenty of one-on-one attention.
             </p>
-            <p>
+            <p className="mb-4">
               My goal is to provide a safe, fun, and loving environment so you
               can have peace of mind while you’re away. Welcome to the family!
+            </p>
+            <p>
+              The daycare is located at <strong>3430 66th Ave NE, Naples FL 34120</strong>. 
+              We’d love to welcome you and your furry friend!
             </p>
           </div>
         </div>
@@ -97,12 +112,12 @@ function AboutSection() {
 /** ---------- FACILITY / GALLERY SECTION ---------- **/
 function FacilitySection() {
   const gallery = [
-    'https://images.unsplash.com/photo-1556526276-1fb22c0b5d74',
-    'https://images.unsplash.com/photo-1537151672256-6c45d16e2b43',
+    'https://images.unsplash.com/photo-1534361960057-19889db9621e?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1422565096762-bdb997a56a84?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     'https://images.unsplash.com/photo-1543466835-00a7907e9de1',
     'https://images.unsplash.com/photo-1560807707-8cc77767d783',
-    'https://images.unsplash.com/photo-1598133894005-28ec7ae2f619',
-    'https://images.unsplash.com/photo-1557569428-dcba1921ac26',
+    'https://images.unsplash.com/photo-1554456854-55a089fd4cb2?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   ];
 
   return (
@@ -129,6 +144,46 @@ function FacilitySection() {
                 fill
                 className="object-cover object-center"
               />
+            </div>
+          ))}
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+/** ---------- TESTIMONIALS SECTION ---------- **/
+function TestimonialSection() {
+  const testimonials = [
+    {
+      name: 'Sarah K.',
+      text: "Manny made my pup feel like part of his family! I couldn't have asked for better care."
+    },
+    {
+      name: 'John S.',
+      text: 'Our dog had a blast playing with the other pups and came home happy and tired.'
+    },
+    {
+      name: 'Emily R.',
+      text: 'The facilities are clean, spacious, and welcoming. Highly recommend for dog owners!'
+    },
+  ];
+
+  return (
+    <section id="testimonials" className="py-16 px-4 bg-white">
+      <motion.div
+        className="container mx-auto max-w-5xl"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="text-3xl font-bold mb-8 text-center">What Our Clients Say</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {testimonials.map((t, index) => (
+            <div key={index} className="bg-gray-100 p-6 rounded shadow">
+              <p className="text-gray-700 mb-4">&quot;{t.text}&quot;</p>
+              <h4 className="font-semibold text-gray-900">- {t.name}</h4>
             </div>
           ))}
         </div>
@@ -201,28 +256,62 @@ function PricingSection() {
 }
 
 /** ---------- BOOKING SECTION (Calendar + Form) ---------- **/
+
+// Type for the react-date-range "selection"
+interface ISelectedRange {
+  startDate: Date;
+  endDate: Date;
+  key: string;
+}
+
 function BookingSection() {
-  const [dateRange, setDateRange] = useState<Date | Date[]>(new Date());
+  const [selectedRange, setSelectedRange] = useState<ISelectedRange>({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection',
+  });
+
   const [dogName, setDogName] = useState('');
   const [isDaycare, setIsDaycare] = useState(false);
+
+  // Owner contact details
+  const [ownerName, setOwnerName] = useState('');
+  const [ownerEmail, setOwnerEmail] = useState('');
+  const [ownerPhone, setOwnerPhone] = useState('');
+
   const [status, setStatus] = useState('');
+
+  // Calculate how many days are selected (inclusive)
+  const dayCount =
+    differenceInCalendarDays(selectedRange.endDate, selectedRange.startDate) + 1;
+
+  function handleSelect(ranges: RangeKeyDict) {
+    const { selection } = ranges;
+    setSelectedRange({
+      startDate: selection.startDate || new Date(),
+      endDate: selection.endDate || new Date(),
+      key: selection.key || 'selection',
+    });
+  }
 
   function handleBooking(e: React.FormEvent) {
     e.preventDefault();
-    // If dateRange is an array, [start, end], otherwise it's a single Date
-    const checkIn = Array.isArray(dateRange) ? dateRange[0] : dateRange;
-    const checkOut = Array.isArray(dateRange) ? dateRange[1] : dateRange;
 
-    // In a real app, you'd insert into your DB or call an API route
-    setStatus(
-      `Thank you, ${dogName}! We received your booking for ${
-        isDaycare ? 'daycare' : 'boarding'
-      } from ${checkIn.toDateString()} ${
-        checkOut && checkOut !== checkIn
-          ? `to ${checkOut.toDateString()}`
-          : ''
-      }.`
-    );
+    const start = selectedRange.startDate;
+    const end = selectedRange.endDate;
+
+    // In a real app, you might send this data to an API or database
+    const bookingMessage = [
+      `Thank you, ${ownerName}, for booking with us!`,
+      `We'll reach out to you at ${ownerEmail} or ${ownerPhone} with more details.`,
+      `\nBooking Details:`,
+      `- Dog's Name: ${dogName}`,
+      `- Service Type: ${isDaycare ? 'Daycare' : 'Boarding'}`,
+      `- Dates: ${start.toDateString()}${end && end !== start ? ` to ${end.toDateString()}` : ''}`,
+      `- Total Days: ${dayCount}`
+    ].join('\n');
+
+    setStatus(bookingMessage);
   }
 
   return (
@@ -234,42 +323,97 @@ function BookingSection() {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-bold mb-6 text-center">
-          Book Your Stay
-        </h2>
+        <h2 className="text-3xl font-bold mb-6 text-center">Book Your Stay</h2>
         <p className="text-center mb-8">
           Reserve a spot for your furry friend. Select dates on the calendar,
           then fill out the form below.
         </p>
 
-        {/* Calendar */}
-        <div className="mx-auto mb-6">
-          <Calendar
-            onChange={setDateRange}
-            value={dateRange}
-            minDate={new Date()}
-            selectRange={true}
-            className="mx-auto"
+        {/* New Date Range Picker */}
+        <div className="mx-auto mb-4 flex justify-center">
+          <DateRange
+            ranges={[selectedRange]}
+            onChange={handleSelect}
+            moveRangeOnFirstSelection={false}
+            minDate={new Date()} // Disallow selecting dates in the past
+            rangeColors={['#34D399']} // example color (green)
           />
         </div>
 
+        {/* Display how many days are selected */}
+        <p className="text-center mb-6 text-gray-700">
+          You have selected <strong>{dayCount}</strong> day
+          {dayCount !== 1 ? 's' : ''}.
+        </p>
+
         {/* Booking Form */}
         <form onSubmit={handleBooking} className="space-y-4">
+
+          {/* Owner Name */}
+          <div>
+            <label className="block mb-1 font-medium" htmlFor="ownerName">
+              Your Full Name
+            </label>
+            <input
+              id="ownerName"
+              type="text"
+              className="w-full border border-gray-300 p-2 rounded"
+              placeholder="e.g. Jane Doe"
+              value={ownerName}
+              onChange={(e) => setOwnerName(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Owner Email */}
+          <div>
+            <label className="block mb-1 font-medium" htmlFor="ownerEmail">
+              Your Email
+            </label>
+            <input
+              id="ownerEmail"
+              type="email"
+              className="w-full border border-gray-300 p-2 rounded"
+              placeholder="e.g. jane@example.com"
+              value={ownerEmail}
+              onChange={(e) => setOwnerEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Owner Phone */}
+          <div>
+            <label className="block mb-1 font-medium" htmlFor="ownerPhone">
+              Phone Number
+            </label>
+            <input
+              id="ownerPhone"
+              type="tel"
+              className="w-full border border-gray-300 p-2 rounded"
+              placeholder="e.g. (555) 123-4567"
+              value={ownerPhone}
+              onChange={(e) => setOwnerPhone(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Dog Name */}
           <div>
             <label className="block mb-1 font-medium" htmlFor="dogName">
-              Dog Name
+              Dog&apos;s Name
             </label>
             <input
               id="dogName"
               type="text"
               className="w-full border border-gray-300 p-2 rounded"
-              placeholder="Your dog's name"
+              placeholder="e.g. Buddy"
               value={dogName}
               onChange={(e) => setDogName(e.target.value)}
               required
             />
           </div>
 
+          {/* Daycare vs Boarding */}
           <div>
             <label className="inline-flex items-center space-x-2">
               <input
@@ -281,6 +425,7 @@ function BookingSection() {
             </label>
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
             className="bg-green-600 text-white w-full py-2 rounded hover:bg-green-700"
@@ -289,10 +434,11 @@ function BookingSection() {
           </button>
         </form>
 
+        {/* Confirmation / Status */}
         {status && (
-          <p className="mt-4 text-green-700 font-semibold text-center">
+          <pre className="mt-4 text-green-700 font-semibold text-center whitespace-pre-wrap">
             {status}
-          </p>
+          </pre>
         )}
       </motion.div>
     </section>

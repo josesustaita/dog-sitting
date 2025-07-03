@@ -118,7 +118,7 @@ export default function Home() {
               <ul>
                 <li>Free 1<sup>st</sup> night on stays&nbsp;&gt; 1 night</li>
                 <li>10&nbsp;% off stays of 7&nbsp;+ nights</li>
-                <li>Major holidays + $10/night</li>
+                <li>Holiday&nbsp;weekends&nbsp;+&nbsp;$10/night</li>
               </ul>
             </div>
 
@@ -127,6 +127,7 @@ export default function Home() {
               <ul>
                 <li>Half-Day – $15 (pick-up before 12 PM)</li>
                 <li>Full-Day – $30 (pick-up after 12 PM)</li>
+                <li>Holiday&nbsp;weekends&nbsp;+&nbsp;$10</li>
               </ul>
             </div>
           </div>

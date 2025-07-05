@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
-import { FaInstagram, FaFacebookF, FaTiktok } from 'react-icons/fa6';
+import { FaInstagram } from 'react-icons/fa6';
 import { useState } from 'react';
 
 import logo from '@/public/IMG_4149.PNG.png';

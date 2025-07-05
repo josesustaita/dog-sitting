@@ -211,7 +211,7 @@ export default function Home() {
                 >
                   <FaInstagram />
                 </a>
-                <a
+                {/* <a
                   aria-label="Facebook"
                   href="https://www.facebook.com/homeawayfromhomedoggydaycare"
                   target="_blank"
@@ -226,7 +226,7 @@ export default function Home() {
                   rel="noreferrer"
                 >
                   <FaTiktok />
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

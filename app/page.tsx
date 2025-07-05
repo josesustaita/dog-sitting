@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
-import { FaInstagram } from 'react-icons/fa6';
+import { FaFacebookF, FaInstagram } from 'react-icons/fa6';
 import { useState } from 'react';
 
 import logo from '@/public/IMG_4149.PNG.png';
@@ -211,15 +211,15 @@ export default function Home() {
                 >
                   <FaInstagram />
                 </a>
-                {/* <a
+                <a
                   aria-label="Facebook"
-                  href="https://www.facebook.com/homeawayfromhomedoggydaycare"
+                  href="https://www.facebook.com/profile.php?id=61578026673378"
                   target="_blank"
                   rel="noreferrer"
                 >
                   <FaFacebookF />
                 </a>
-                <a
+                {/* <a
                   aria-label="TikTok"
                   href="https://www.tiktok.com/@homeawayfromhomedoggydaycare"
                   target="_blank"

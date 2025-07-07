@@ -109,7 +109,7 @@ export default function Home() {
                 $50<span>/night</span>
               </p>
               <ul>
-                <li>Free 1<sup>st</sup> night on stays&nbsp;&gt; 1 night</li>
+                <li>Free 1<sup>st</sup> night on stays&nbsp;&gt; 1 night (first-time customers only)</li>
                 <li>10&nbsp;% off stays of 7&nbsp;+ nights</li>
                 <li>Holiday&nbsp;weekends&nbsp;+&nbsp;$10/night</li>
               </ul>

@@ -62,8 +62,8 @@ export default function Home() {
             <span className="accent">for Your Best Friend</span>
           </h1>
           <p>Supervised play, cozy naps, and belly rubs included.</p>
-          <a className="cta" href="tel:+12396584305">
-            Call&nbsp;(239)&nbsp;658-4305
+          <a className="cta" href="tel:+12393029754">
+            Call&nbsp;(239)&nbsp;302-9754
           </a>
         </section>
 
@@ -190,12 +190,8 @@ export default function Home() {
             <div>
               <p>We prefer pet parents call to reserve a stay.</p>
               <p>
-                <strong>Pamela:</strong>{' '}
-                <a href="tel:+12396584305">(239)&nbsp;658-4305</a>
-              </p>
-              <p>
-                <strong>Emmanuel:</strong>{' '}
-                <a href="tel:+12396752077">(239)&nbsp;675-2077</a>
+                <strong>Phone:</strong>{' '}
+                <a href="tel:+2393029754">(239)&nbsp;302-9754</a>
               </p>
               <p>
                 <strong>Email:</strong>{' '}

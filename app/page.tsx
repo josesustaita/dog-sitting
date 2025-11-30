@@ -110,19 +110,18 @@ export default function Home() {
               </p>
               <ul>
                 <li>Free 1<sup>st</sup> night on stays&nbsp;&gt; 1 night (first-time customers only)</li>
-                <li>10&nbsp;% off stays of 7&nbsp;+ nights</li>
-                <li>Holiday&nbsp;weekends&nbsp;+&nbsp;$10/night</li>
+                <li>Holidays&nbsp;+&nbsp;$10/night</li>
               </ul>
             </div>
 
             <div className="card">
               <h3>
-                Daycare <small>(late pick-up)</small>
+                Daycare <small></small>
               </h3>
               <ul>
                 <li>Half-Day – $15 (pick-up before 12&nbsp;PM)</li>
                 <li>Full-Day – $30 (pick-up after 12&nbsp;PM)</li>
-                <li>Holiday&nbsp;weekends&nbsp;+&nbsp;$10</li>
+                <li>Holidays&nbsp;+&nbsp;$10</li>
               </ul>
             </div>
           </div>

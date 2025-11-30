@@ -6,11 +6,34 @@ import { Menu } from 'lucide-react';
 import { FaFacebookF, FaInstagram } from 'react-icons/fa6';
 import { useState } from 'react';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import logo from '@/public/IMG_4149.PNG.png';
 import logoNb from '@/public/logonobg.png';
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const galleryImages = [
+    '/gallery/image1.png',
+    '/gallery/image2.png',
+    '/gallery/image3.png',
+    '/gallery/image4.png',
+    '/gallery/image5.png',
+    '/gallery/image6.png',
+    '/gallery/image7.png',
+    '/gallery/image8.png',
+    '/gallery/image9.png',
+    '/gallery/image10.png',
+    '/gallery/image11.png',
+    '/gallery/image12.png',
+    '/gallery/image13.png',
+    '/gallery/image14.png',
+  ];
 
   return (
     <>
@@ -109,7 +132,10 @@ export default function Home() {
                 $50<span>/night</span>
               </p>
               <ul>
-                <li>Free 1<sup>st</sup> night on stays&nbsp;&gt; 1 night (first-time customers only)</li>
+                <li>
+                  Free 1<sup>st</sup> night on stays&nbsp;&gt; 1 night (first-time
+                  customers only)
+                </li>
                 <li>Holidays&nbsp;+&nbsp;$10/night</li>
               </ul>
             </div>
@@ -127,17 +153,59 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ─────────── Gallery ─────────── */}
+        {/* ─────────── Gallery (Carousel) ─────────── */}
         <section id="gallery" className="section">
           <h2>Happy&nbsp;Guests</h2>
           <p>Some recent pups enjoying their stay with us!</p>
 
-          <div className="gallery-grid">
-            {['/gallery/image1.png', '/gallery/image2.png', '/gallery/image3.png', '/gallery/image4.png'].map(
-              (src) => (
-                <Image key={src} src={src} alt="Guest dog" width={800} height={600} />
-              ),
-            )}
+          <div
+            className="gallery-carousel"
+            style={{
+              position: 'relative',
+              maxWidth: '900px',
+              margin: '0 auto',
+            }}
+          >
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={16}
+              slidesPerView={1}
+              loop
+              navigation
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 5000, disableOnInteraction: false }}
+              style={{ width: '100%' }}
+            >
+              {galleryImages.map((src, index) => (
+                <SwiperSlide key={src}>
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '450px',
+                      background: '#000',
+                      borderRadius: '12px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <Image
+                      src={src}
+                      alt={`Guest dog ${index + 1}`}
+                      width={800}
+                      height={600}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                        objectPosition: 'center',
+                      }}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </section>
 
@@ -194,7 +262,9 @@ export default function Home() {
               </p>
               <p>
                 <strong>Email:</strong>{' '}
-                <a href="mailto:Hafhpetboardingllc@gmail.com">Hafhpetboardingllc@gmail.com</a>
+                <a href="mailto:Hafhpetboardingllc@gmail.com">
+                  Hafhpetboardingllc@gmail.com
+                </a>
               </p>
 
               <div className="social-icons">

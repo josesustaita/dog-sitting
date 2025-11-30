@@ -15,24 +15,30 @@ import 'swiper/css/pagination';
 import logo from '@/public/IMG_4149.PNG.png';
 import logoNb from '@/public/logonobg.png';
 
+type GalleryItem =
+  | { type: 'image'; src: string }
+  | { type: 'video'; src: string };
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const galleryImages = [
-    '/gallery/image1.png',
-    '/gallery/image2.png',
-    '/gallery/image3.png',
-    '/gallery/image4.png',
-    '/gallery/image5.png',
-    '/gallery/image6.png',
-    '/gallery/image7.png',
-    '/gallery/image8.png',
-    '/gallery/image9.png',
-    '/gallery/image10.png',
-    '/gallery/image11.png',
-    '/gallery/image12.png',
-    '/gallery/image13.png',
-    '/gallery/image14.png',
+  const galleryItems: GalleryItem[] = [
+    { type: 'image', src: '/gallery/image1.png' },
+    { type: 'image', src: '/gallery/image2.png' },
+    { type: 'image', src: '/gallery/image3.png' },
+    { type: 'image', src: '/gallery/image4.png' },
+    { type: 'image', src: '/gallery/image5.png' },
+    { type: 'image', src: '/gallery/image6.png' },
+    { type: 'image', src: '/gallery/image7.png' },
+    { type: 'image', src: '/gallery/image8.png' },
+    { type: 'image', src: '/gallery/image9.png' },
+    { type: 'image', src: '/gallery/image10.png' },
+    { type: 'image', src: '/gallery/image11.png' },
+    { type: 'image', src: '/gallery/image12.png' },
+    { type: 'image', src: '/gallery/image13.png' },
+    { type: 'image', src: '/gallery/image14.png' },
+    { type: 'video', src: '/gallery/video1.mov' },
+    { type: 'video', src: '/gallery/video2.mov' },
   ];
 
   return (
@@ -176,8 +182,8 @@ export default function Home() {
               autoplay={{ delay: 5000, disableOnInteraction: false }}
               style={{ width: '100%' }}
             >
-              {galleryImages.map((src, index) => (
-                <SwiperSlide key={src}>
+              {galleryItems.map((item, index) => (
+                <SwiperSlide key={`${item.type}-${item.src}`}>
                   <div
                     style={{
                       width: '100%',
@@ -190,18 +196,35 @@ export default function Home() {
                       overflow: 'hidden',
                     }}
                   >
-                    <Image
-                      src={src}
-                      alt={`Guest dog ${index + 1}`}
-                      width={800}
-                      height={600}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'contain',
-                        objectPosition: 'center',
-                      }}
-                    />
+                    {item.type === 'image' ? (
+                      <Image
+                        src={item.src}
+                        alt={`Guest dog ${index + 1}`}
+                        width={800}
+                        height={600}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          objectPosition: 'center',
+                        }}
+                      />
+                    ) : (
+                <video
+  src={item.src}
+  controls
+  muted
+  playsInline
+  style={{
+    width: '100%',
+    height: '100%',
+    objectFit: 'contain',   // ← FIX: no zooming
+    objectPosition: 'center',
+    background: '#000',     // clean black frame like the images
+    borderRadius: '12px',
+  }}
+/>
+                    )}
                   </div>
                 </SwiperSlide>
               ))}

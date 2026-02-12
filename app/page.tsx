@@ -289,6 +289,10 @@ export default function Home() {
                   Hafhpetboardingllc@gmail.com
                 </a>
               </p>
+                              <p>
+                              <strong>Address:</strong> 3430 66th Ave NE, Naples, FL 34120
+                              </p>
+              
 
               <div className="social-icons">
                 <a

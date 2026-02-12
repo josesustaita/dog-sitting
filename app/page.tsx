@@ -339,6 +339,7 @@ export default function Home() {
       <footer className="footer">
         <Image src={logoNb.src} alt="" width={28} height={28} />
         <span>© {new Date().getFullYear()} Home Away From Home, LLC</span>
+        <p>3430 66th Ave NE, Naples, FL 34120</p>
       </footer>
     </>
   );
